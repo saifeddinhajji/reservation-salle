@@ -34,3 +34,5 @@ Route::get('/register',function(){ return back()->withInput();});
 
 Route::get('/liste_reservation', 'ReservationController@list')->name('liste_reservation');
 Route::get('/liste_reservation/ajouter_reservation', 'ReservationController@create')->name('ajouter_reservation');
+Route::post('/ajoutreservation','ReservationController@store')->name('saveres');
+Route::get('/deletereservation/{id}','ReservationController@destroy')->name('deletereservation');

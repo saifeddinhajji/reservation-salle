@@ -4,7 +4,8 @@
 <div class="container">
   <h2>Ajouter une réservation</h2>    
   <hr>
-  <form>
+<form action="{{route('saveres')}}" method="post">
+  @csrf
   <div class="form-row">
     <div class="form-group col-md-6">
     <label >Salle <sup style="color:red">*</sup></label>
@@ -15,14 +16,16 @@
     </select>
   </div>
 
-  <input type="hidden" class="form-control" name="user_id">
+<input type="hidden" class="form-control" name="user_id" value="{{Auth::user()->id}}">
 
     <div class="form-group col-md-6">
       <label >Client <sup style="color:red">*</sup></label>
-      <select class="form-control"  name="user_id" required>
+      <select class="form-control"  name="client_id" required>
       <option selected disabled>sélectionnez un client</option>
-      <option value="1">client 1</option>
-      <option value="2">client 2</option>
+      @foreach (DB::table('clients')->orderby('created_at','desc')->get() as $client)
+      <option value="{{$client->id}}">{{$client->nom}}</option>
+      @endforeach
+      
     </select>
     </div>
 
@@ -33,12 +36,12 @@
 
   <div class="form-group  col-md-6">
       <label for="example-datetime-local-input" class="col-form-label">Date début <sup style="color:red">*</sup></label>
-      <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" name="start_date" required>
+      <input class="form-control" type="datetime-local"  name="start_date" required>
   </div>
 
   <div class="form-group  col-md-6">
       <label for="example-datetime-local-input" class="col-form-label">Date fin <sup style="color:red">*</sup></label>
-      <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" name="end_date" required>
+      <input class="form-control" type="datetime-local"  name="end_date" required>
   </div>
 
 </div>
@@ -58,7 +61,7 @@
           <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">TND</span>
         </div>
-          <input  type="number" min="0" step="1" value="0"  class="form-control" name="prix" required>
+          <input  type="number" min="0" step="1" placeholder="0"  class="form-control" name="prix" required>
     </div>
   </div>
 
@@ -68,7 +71,7 @@
           <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1">TND</span>
         </div>
-          <input  type="number" min="0" step="1" value="0"  class="form-control" name="avance" required>
+          <input  type="number" min="0" step="1" placeholder="0"  class="form-control" name="avance" required>
     </div>
   </div>
   </div>
