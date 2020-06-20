@@ -15,6 +15,23 @@
 
 <script>
 
+
+var array = @json($reservations);
+var array2=[]
+
+array.forEach(function(data, index) {
+      
+      json={
+        id: data.id,
+        title: data.client.nom + " " + data.client.prenom +" (salle "+data.salle+")" ,
+        start: data.start_date,
+        end: data.end_date
+      }
+      array2.push(json)
+    });
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   var calendarEl = document.getElementById('calendar');
 
@@ -37,20 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
     },
 
 
-    events: [
-      {
-        id: "1",
-        title: "3erss saif",
-        start: "2020-06-20T10:30:00",
-        end: "2020-06-20T11:30:00"
-      },
-      {
-        id: "1",
-        title: "3erssi ena",
-        start: "2020-06-20T12:30:00",
-        end: "2020-06-20T14:30:00"
-      }
-    ]
+    events: array2
     
     
   });

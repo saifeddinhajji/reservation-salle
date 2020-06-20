@@ -7,6 +7,12 @@
         <strong>{{ $message }}</strong>
 </div>
 @endif
+@if ($message = Session::get('error'))
+<div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>	
+        <strong>{{ $message }}</strong>
+</div>
+@endif
 <div class="container">
   <h2>Listes des réservations</h2>    
   <a href="/liste_reservation/ajouter_reservation"  class="btn btn-primary pull-right" style="margin-bottom:10px" >Ajouter une réservation</a>
@@ -20,7 +26,6 @@
         <th>Date fin</th>
         <th>Prix</th>
         <th>Avance</th>
-        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -36,11 +41,11 @@
         <td>{{$res->end_date}} </td>
         <td>{{$res->prix}} TND</td>
         <td>{{$res->avance}}TND</td>
-          <td class="text-center">
+         
 
-           
-            <a class="btn btn-danger btn-sm " href="{{route('deletereservation',$res->id)}}" onclick="return confirm('Êtes-vous sûr de bien vouloir supprimer cet reservation?');"></i></a>
-          </td>
+          <td class="text-center"><a class="btn btn-danger btn-sm "  href="{{route('deletereservation',$res->id)}}" onclick="return confirm('Êtes-vous sûr de bien vouloir supprimer cet reservation?');"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+          
+        
         </tr>
       @endforeach
       
