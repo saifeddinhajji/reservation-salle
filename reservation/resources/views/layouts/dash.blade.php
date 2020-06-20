@@ -11,8 +11,11 @@
   <title>Salles des Fêtes</title>
 
 
-  <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
 
+
+    
+  <!-- font-awesome CSS -->
+  <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
 
   <!-- Bootstrap core CSS -->
   <link href="{{asset('template/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -30,7 +33,10 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Salles des Fêtes </div>
       <div class="list-group list-group-flush">
-        <a href="/reservation" class="list-group-item list-group-item-action bg-light">Réservation</a>
+      <a href="/reservation" class="list-group-item list-group-item-action bg-light"></a>
+        <a href="/reservation" class="list-group-item list-group-item-action bg-light">Calendrier réservations</a>
+        <a href="/liste_reservation" class="list-group-item list-group-item-action bg-light">Liste réservations</a>
+        <a href="/liste_reservation/ajouter_reservation" class="list-group-item list-group-item-action bg-light">Ajouter réservation</a>
         <a href="/clients" class="list-group-item list-group-item-action bg-light">Clients</a>
         <a class="dropdown-item list-group-item list-group-item-action bg-light" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

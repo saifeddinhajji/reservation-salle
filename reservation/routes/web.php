@@ -28,3 +28,9 @@ Route::post('/client/search','ClientController@search')->name('search');
 
 Route::post('/clients/add', 'ClientController@store')->name('save_clients');
 Route::get('/register',function(){ return back()->withInput();});
+
+
+
+
+Route::get('/liste_reservation', 'ReservationController@list')->name('liste_reservation');
+Route::get('/liste_reservation/ajouter_reservation', 'ReservationController@create')->name('ajouter_reservation');

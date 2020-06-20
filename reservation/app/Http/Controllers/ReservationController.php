@@ -19,6 +19,19 @@ class ReservationController extends Controller
         return view("reservation");
     }
 
+
+       /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list()
+    {
+        return view("liste_reservation");
+    }
+
+
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -26,7 +39,7 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        //
+        return view("ajouter_reservation");
     }
 
     /**
