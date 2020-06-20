@@ -37,7 +37,7 @@
     </div>
   
   </div>
-  <button type="submit" class="btn btn-primary pull-right" style="padding:6px 50px">Mise A jour </button>
+  <button type="submit" class="btn btn-primary pull-right" style="padding:6px 50px">Modifier </button>
 </form>
 </div>
 

@@ -9,9 +9,29 @@
 @endif
 <div class="container">
   <h2>Listes des clients</h2>  
-<form action="{{route('search')}}" method="POST"> @csrf <input type="text"  style="form-control" placeholder="nom,prenom,région" name="search" required> </form>
+
+
  
-  <a href="/clients/add"  class="btn btn-primary pull-right" style="margin-bottom:10px" >Ajouter un client</a>
+
+
+  <div class="row">
+    <div class="col-md-8" style="padding-right: 0;">
+    <form action="{{route('search')}}" method="POST"> @csrf 
+          <div class="row">
+            <div class="col-md-9">
+            <input type="text" style="border-color: #007bff;"  class="form-control" placeholder="Tapez un Nom, Prenom, N° téléphone etc..." name="search" >
+            </div>
+            <div class="col-md-3" style=" padding-left: 0;">
+            <button type="submit" class="btn btn-outline-primary pull-left"><i class="fa fa-search" aria-hidden="true"></i></button>
+            </div>
+          </div>
+      </form>
+    </div>
+    <div class="col-md-4">
+    <a href="/clients/add"  class="btn btn-primary pull-right" style="margin-bottom:10px" >Ajouter un client</a>
+</div>
+  </div>
+
   <table class="table table-bordered">
     <thead>
       <tr>

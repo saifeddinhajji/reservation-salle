@@ -31,17 +31,28 @@
 
     <!-- Sidebar -->
     <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading">Salles des Fêtes </div>
+      <div class="sidebar-heading"> <i class="fa fa-angle-double-left" aria-hidden="true"></i><b>  Salles des Fêtes </b><i class="fa fa-angle-double-right" aria-hidden="true"></i> </div>
       <div class="list-group list-group-flush">
-      <a href="/reservation" class="list-group-item list-group-item-action bg-light"></a>
-        <a href="/reservation" class="list-group-item list-group-item-action bg-light">Calendrier réservations</a>
-        <a href="/liste_reservation" class="list-group-item list-group-item-action bg-light">Liste réservations</a>
-        <a href="/liste_reservation/ajouter_reservation" class="list-group-item list-group-item-action bg-light">Ajouter réservation</a>
-        <a href="/clients" class="list-group-item list-group-item-action bg-light">Clients</a>
+      <a class="list-group-item list-group-item-action bg-light" ></a>
+       
+      <a href="/reservation" class="list-group-item list-group-item-action bg-light"><i class="fa fa-tachometer" aria-hidden="true"></i><b> Réservations</b></a>
+        <a href="/reservation" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Calendrier réservations</a>
+        <a href="/liste_reservation" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Liste réservations</a>
+        <a href="/liste_reservation/ajouter_reservation" class="list-group-item list-group-item-action bg-light" >&nbsp;&nbsp;&nbsp;Ajouter réservation</a>
+     
+     
+        <a href="/clients" class="list-group-item list-group-item-action bg-light"><i class="fa fa-tachometer" aria-hidden="true"></i><b> Clients</b></a>
+
+        <a href="/clients" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Clients</a>
+        <a href="/clients/add" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Ajouter un client</a>
+
+
+
+        <a class="list-group-item list-group-item-action bg-light"></a>
         <a class="dropdown-item list-group-item list-group-item-action bg-light" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Déconnexion
+                                       &nbsp;&nbsp;&nbsp; Déconnexion
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -23,6 +23,10 @@ class ClientController extends Controller
             $search=$request->input('search');
             $clients=Client::where('nom','like','%'.$search.'%')
             ->orwhere('prenom','like','%'.$search.'%')
+            ->orwhere('cin','like','%'.$search.'%')
+            ->orwhere('mobile','like','%'.$search.'%')
+            ->orwhere('fix','like','%'.$search.'%')
+            ->orwhere('region','like','%'.$search.'%')
             ->orderBy('created_at', 'desc')
             ->paginate(8); 
             return view("clients")->with('clients',$clients);
@@ -53,7 +57,7 @@ class ClientController extends Controller
         $client->mobile=$request->input('mobile');
         $client->region=$request->input('region');
         $client->save();
-        session()->flash('success','la nouvelle client a été enregistrer correctement!');
+        session()->flash('success','Opération effectuée avec succès');
        return redirect('/clients');
     }
 
@@ -94,7 +98,7 @@ class ClientController extends Controller
         $client->mobile=$request->input('mobile');
         $client->region=$request->input('region');
         $client->save();
-        session()->flash('success','la mise a jour de  client a été modifer avec succes !');
+        session()->flash('success','Opération effectuée avec succès');
        return redirect('/clients');
     }
   
@@ -110,7 +114,7 @@ class ClientController extends Controller
         if($client)
        { $client->delete();}
        
-       session()->flash('success','la client supprimer avec succées');
+       session()->flash('success','Opération effectuée avec succès');
        return back()->withInput();
     }
 }
