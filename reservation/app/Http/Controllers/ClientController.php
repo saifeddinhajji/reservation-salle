@@ -14,9 +14,19 @@ class ClientController extends Controller
      */
     public function index()
     {
-        return view("clients");
-    }
+        $clients=Client::orderBy('created_at', 'desc')->paginate(8);
 
+        return view("clients")->with('clients',$clients);
+    }
+        public function search (Request $request)
+        {
+            $search=$request->input('search');
+            $clients=Client::where('nom','like','%'.$search.'%')
+            ->orwhere('prenom','like','%'.$search.'%')
+            ->orderBy('created_at', 'desc')
+            ->paginate(8); 
+            return view("clients")->with('clients',$clients);
+        }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +45,16 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client=new Client;
+        $client->nom=$request->input('nom');
+        $client->prenom=$request->input('prenom');;
+        $client->cin=$request->input('cin');
+        $client->fix=$request->input('fix');
+        $client->mobile=$request->input('mobile');
+        $client->region=$request->input('region');
+        $client->save();
+        session()->flash('success','la nouvelle client a été enregistrer correctement!');
+       return redirect('/clients');
     }
 
     /**
@@ -44,9 +63,15 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show($id)
     {
-        //
+        $client=Client::findOrFail($id);
+        if(!$client)
+        {
+            return  back()->withInput();
+        }
+        
+        return view('updateclient')->with('client',$client);
     }
 
     /**
@@ -55,31 +80,37 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Request $request,$id)
     {
-        //
+        $client=Client::findOrFail($id);
+        if(!$client)
+        {
+            return redirect('/clients');
+        }
+        $client->nom=$request->input('nom');
+        $client->prenom=$request->input('prenom');;
+        $client->cin=$request->input('cin');
+        $client->fix=$request->input('fix');
+        $client->mobile=$request->input('mobile');
+        $client->region=$request->input('region');
+        $client->save();
+        session()->flash('success','la mise a jour de  client a été modifer avec succes !');
+       return redirect('/clients');
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Client $client)
-    {
-        //
-    }
-
+  
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy($id)
     {
-        //
+        $client=Client::findOrFail($id);
+        if($client)
+       { $client->delete();}
+       
+       session()->flash('success','la client supprimer avec succées');
+       return back()->withInput();
     }
 }
