@@ -17,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', function () {return view('auth.login');});
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/reservation', 'ReservationController@index')->name('reservation');
+Route::get('/clients', 'ClientController@index')->name('clients');
+Route::get('/clients/add', 'ClientController@create')->name('add_clients');
 Route::get('/register',function(){ return back()->withInput();});
