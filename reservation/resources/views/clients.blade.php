@@ -8,7 +8,7 @@
 </div>
 @endif
 <div class="container">
-  <h2>Listes des clients</h2>  
+  <h2>Listes des locataires</h2>  
 
 
  
@@ -28,7 +28,7 @@
       </form>
     </div>
     <div class="col-md-4">
-    <a href="/clients/add"  class="btn btn-primary pull-right" style="margin-bottom:10px" >Ajouter un client</a>
+    <a href="/clients/add"  class="btn btn-sm btn-primary pull-right" style="margin-bottom:10px" >Ajouter un client</a>
 </div>
   </div>
 
@@ -46,7 +46,7 @@
     </thead>
     <tbody>
       @if(!$clients)
-      aucun client dans la base de données
+      aucun locataire  dans la base de données
       @endif
       @foreach ($clients as $client)
       <tr>
@@ -56,7 +56,9 @@
         <td>{{$client->mobile}}</td>
         <td>{{$client->fix}}</td>
         <td>{{$client->region}}</td>
-      <td class="text-center"><a class="btn btn-secondary btn-sm " style="margin-right:7px" href="{{route('updateclient',$client->id)}}"><i class="fa fa-pencil" aria-hidden="true"></i></a><a class="btn btn-danger btn-sm " href="{{route('deleteclient',$client->id)}}" onclick="return confirm('Êtes-vous sûr de bien vouloir supprimer cet client?');"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+      <td class="text-center">
+      <a class="btn btn-secondary btn-sm " style="margin-right:7px" href="{{route('updateclient',$client->id)}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+      <a class="btn btn-danger btn-sm " href="{{route('deleteclient',$client->id)}}" onclick="return confirm('Êtes-vous sûr de bien vouloir supprimer cet client?');"><i class="fa fa-times" aria-hidden="true"></i></a></td>
       </tr>
       @endforeach
     

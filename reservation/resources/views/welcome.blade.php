@@ -61,6 +61,14 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .back{
+                background-image: url("/image/home.jpg");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    height: 100vh;
+                background-color:#5B5A5A;
+                width:100%;
+            }
         </style>
     </head>
     <body>
@@ -70,30 +78,21 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}" style="color: black;"><button style="border-color: red; border-radius: 50px;">Login</button></a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
                     @endauth
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <div class="content back">
+                <div class="title m-b-md" style="padding-top: 110px;color: black;font-family: cursive;">
+                   <b>Reservation De Salle Fêtes</b>
                 </div>
+                <div class=" m-b-md" style="font-size: 22px;
+    color: black;
+    padding: 10px 150px 10px 150px;">Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte.</div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+               
             </div>
         </div>
     </body>

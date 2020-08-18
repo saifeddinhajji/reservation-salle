@@ -23,9 +23,10 @@ array.forEach(function(data, index) {
       
       json={
         id: data.id,
-        title: data.client.nom + " " + data.client.prenom +" (salle "+data.salle+")" ,
+        title: data.client.nom + " " + data.client.prenom +" (salle "+data.salle.nom+")" +" (prix "+data.prix.prix+")"  ,
         start: data.start_date,
-        end: data.end_date
+        end: data.end_date,
+        // url: 'http://127.0.0.1:8000/liste_reservation/ajouter_reservation'
       }
       array2.push(json)
     });

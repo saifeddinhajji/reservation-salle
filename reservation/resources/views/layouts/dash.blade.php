@@ -38,14 +38,18 @@
       <a href="/reservation" class="list-group-item list-group-item-action bg-light"><i class="fa fa-tachometer" aria-hidden="true"></i><b> Réservations</b></a>
         <a href="/reservation" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Calendrier réservations</a>
         <a href="/liste_reservation" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Liste réservations</a>
-        <a href="/liste_reservation/ajouter_reservation" class="list-group-item list-group-item-action bg-light" >&nbsp;&nbsp;&nbsp;Ajouter réservation</a>
      
      
         <a href="/clients" class="list-group-item list-group-item-action bg-light"><i class="fa fa-tachometer" aria-hidden="true"></i><b> Clients</b></a>
 
-        <a href="/clients" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Clients</a>
-        <a href="/clients/add" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Ajouter un client</a>
+        <a href="/clients" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Locataires</a>
+        <a href="/clients/add" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Ajouter un locataire </a>
 
+@if(Auth::user()->role=="directeur")
+        <a href="/allsalles" class="list-group-item list-group-item-action bg-light"><i class="fa fa-tachometer" aria-hidden="true"></i><b> Bien</b></a>
+  <a href="{{route('allsalles')}}" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Salles</a>
+        <a href="{{route('allautres')}}" class="list-group-item list-group-item-action bg-light">&nbsp;&nbsp;&nbsp;Autres</a>
+@endif
 
 
         <a class="list-group-item list-group-item-action bg-light"></a>
@@ -73,9 +77,12 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+       @if(Auth::user()->role=="direcrteur")      
+        <a class="nav-link" href="{{route('listutlisateur')}}">List Des Comptes <span class="sr-only">(current)</span></a>
+      @endif
+          
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-          
-          
+    
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{Auth::user()->name}}

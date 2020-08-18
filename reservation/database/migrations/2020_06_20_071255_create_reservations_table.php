@@ -15,14 +15,15 @@ class CreateReservationsTable extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-            $table->string('salle')->nullable();
+            $table->integer('salle_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
             $table->integer('client_id')->unsigned()->index();
             $table->datetime('start_date')->nullable();
             $table->datetime('end_date')->nullable();
             $table->text('description')->nullable();
-            $table->biginteger('prix')->nullable();
-            $table->biginteger('avance')->nullable();
+            $table->float('prix')->nullable();
+            $table->boolean('engagement')->default(0);
+            $table->boolean('permisdefete')->default(0);
             $table->timestamps();
         });
     }

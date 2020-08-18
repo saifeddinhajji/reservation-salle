@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container">
-  <h2>Ajouter un client</h2>    
+  <h2>Ajouter un locataire </h2>    
+    <a href="/liste_reservation/ajouter_reservation"  class="btn-sm btn-primary pull-right" style="margin-bottom:10px" >Ajouter une réservation</a>
+<br>
   <hr>
   <form method="post" action="{{route('save_clients')}}">
     @csrf
@@ -36,7 +38,7 @@
     </div>
   
   </div>
-  <button type="submit" class="btn btn-primary pull-right" style="padding:6px 50px">Ajouter</button>
+  <button type="submit" class="btn-sm btn-primary pull-right" style="padding:6px 50px">Ajouter</button>
 </form>
 </div>
 

@@ -14,9 +14,18 @@
 </div>
 @endif
 <div class="container">
-  <h2>Listes des réservations</h2>    
-  <a href="/liste_reservation/ajouter_reservation"  class="btn btn-primary pull-right" style="margin-bottom:10px" >Ajouter une réservation</a>
-  <table class="table table-bordered">
+<div class="row">
+<div class="col-md-9">
+ <h2>Listes des réservations</h2> 
+</div>
+<div class="col-md-3">
+  <a href="/liste_reservation/ajouter_reservation"  class="btn-sm btn-primary pull-right" style="margin-bottom:10px" >Ajouter une réservation</a>
+
+</div>
+</div>
+<hr>
+<br>
+    <table class="table table-bordered">
     <thead>
       <tr>
         <th>Nom Client</th>
@@ -25,7 +34,7 @@
         <th>Date depart</th>
         <th>Date fin</th>
         <th>Prix</th>
-        <th>Avance</th>
+        <th>option</th>
       </tr>
     </thead>
     <tbody>
@@ -36,16 +45,16 @@
         @endphp
         <td>{{$client->nom}}{{$client->prenom}} </td>
       <td>{{$client->mobile}}@if($client->fix) /{{$client->fix}}@endif</td>
-        <td>salle {{$res->salle}}</td>
+        <td>salle {{DB::table('salles')->where('id',$res->salle_id)->select('nom')->value('nom')}}</td>
         <td>{{$res->start_date}}</td>
         <td>{{$res->end_date}} </td>
-        <td>{{$res->prix}} TND</td>
-        <td>{{$res->avance}}TND</td>
-         
-
-          <td class="text-center"><a class="btn btn-danger btn-sm "  href="{{route('deletereservation',$res->id)}}" onclick="return confirm('Êtes-vous sûr de bien vouloir supprimer cet reservation?');"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+        <td>{{DB::table('prix-loc')->where('id',$res->prix_id)->select('prix')->value('prix')}} TND</td>
+        <td>@if($res->engagement==true) engagement / @endif @if($res->permisdefete==true)  permisdefete @endif /</td>
+          <td style="padding: 17px 1px;">
           
-        
+                    <a class="btn btn-primary btn-sm "  href="{{route('reglement',$res->id)}}" ><i class="fa fa-info-circle"></i></a>      
+
+          <a class="btn btn-danger btn-sm "  href="{{route('deletereservation',$res->id)}}" ><i class="fa fa-times" aria-hidden="true"></i></a></td>        
         </tr>
       @endforeach
       

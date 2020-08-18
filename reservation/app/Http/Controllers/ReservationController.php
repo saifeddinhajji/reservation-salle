@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Reservation;
 use Illuminate\Http\Request;
 use Auth;
-
-
+use App\Prix;
+use DateTime;
+use Redirect;
 class ReservationController extends Controller
 {
     /**
@@ -16,11 +17,9 @@ class ReservationController extends Controller
      */
     public function index()
     {
-
-        $reservations = Reservation::with("client")->get();
-
-        return view("reservation") ->with('reservations',json_decode($reservations));
-        
+        $reservations = Reservation::with("client")->with('salle')->with('prix')->get();
+       
+     return view("reservation") ->with('reservations',json_decode($reservations));      
     }
 
 
@@ -46,7 +45,8 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        return view("ajouter_reservation");
+        $date=new  DateTime();
+        return view("ajouter_reservation")->with('date',$date);
     }
 
     /**
@@ -57,37 +57,48 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        $res1=Reservation::where('salle','=',$request->input('salle'))->where('start_date','<=',$request->input('start_date'))->where('end_date','>=',$request->input('end_date'))->count();
+       
+        $salle_id=Prix::find($request->input('prix_id'))->salle->id;
+      $res1=Reservation::where('salle_id','=',$salle_id)->where('start_date','<=',$request->input('start_date'))->where('end_date','>=',$request->input('end_date'))->count();
 
-        $res2=Reservation::where('salle','=',$request->input('salle'))->where('start_date','<=',$request->input('start_date'))->where('end_date','>=',$request->input('end_date'))->count();
+        $res2=Reservation::where('salle_id','=',$salle_id)->where('start_date','<=',$request->input('start_date'))->where('end_date','>=',$request->input('end_date'))->count();
 
        
-        $res3=Reservation::where('salle','=',$request->input('salle'))->whereBetween('start_date',[$request->input('start_date'),$request->input('end_date')])->count();
-        $res4=Reservation::where('salle','=',$request->input('salle'))->whereBetween('end_date',[$request->input('start_date'),$request->input('end_date')])->count();
-       
-        
+        $res3=Reservation::where('salle_id','=',$salle_id)->whereBetween('start_date',[$request->input('start_date'),$request->input('end_date')])->count();
+        $res4=Reservation::where('salle_id','=',$salle_id)->whereBetween('end_date',[$request->input('start_date'),$request->input('end_date')])->count();
+     
+     
+       if($res1==0 && $res2==0 && $res3==0 && $res4==0  ){
 
-        if($res1==0 && $res2==0 && $res3==0 && $res4==0  ){
             $reservation=new Reservation;
-            $reservation->salle=$request->input('salle');
+            $reservation->salle_id=$salle_id;
+            $reservation->prix_id=$request->input('prix_id');
             $reservation->user_id=Auth::user()->id;
             $reservation->client_id=$request->input('client_id');
             $reservation->start_date=$request->input('start_date');
             $reservation->end_date=$request->input('end_date');
             $reservation->description=$request->input('description');
             $reservation->prix=$request->input('prix');
-            $reservation->avance=$request->input('avance');
+            $reservation->engagement=$request->input('engagement')=="on";
+            $reservation->permisdefete=$request->input('permisdefete')=="on";
             $reservation->save();
-            session()->flash('success','la nouvelle reservation a été enregistrer correctement!');
-        }else{
+           session()->flash('success','la nouvelle reservation a été enregistrer correctement!');
+          }else{
             session()->flash('error','chevauchement entre deux période!');
+            return redirect('/liste_reservation');
         }
         
         
-    
-       return redirect('/liste_reservation');
-    }
 
+if($request->input('action')=="avec" && $reservation)
+{
+    return Redirect::to('reglement/'.$reservation->id);
+}
+return redirect('/liste_reservation');
+     
+       
+    
+    }
     /**
      * Display the specified resource.
      *
