@@ -19,6 +19,7 @@ class CreateTabePrixLcataires extends Migration
             $table->date('datefin')->nullable();
             $table->float('prix')->nullable();
             $table->integer('salle_id')->unsigned()->index();
+            $table->string('saison')->nullable();
             $table->timestamps();
         });
     }

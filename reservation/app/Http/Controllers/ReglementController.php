@@ -17,8 +17,9 @@ class ReglementController extends Controller
     {
      $date=new  DateTime();
   
-      $reservation=Reservation::find($id)->with('prix')->with('salle')->with('client')->first();
-    $reglements=Reglement::where('reservation_id',$id)->with('cheque')->with('virement')->with('espece')->get();
+
+      $reservation=Reservation::find($id);
+     $reglements=Reglement::where('reservation_id',$id)->with('cheque')->with('virement')->with('espece')->get();
  
  return view('reglement.reglement')->with('reservation',$reservation)->with('date',$date)->with('reglements',$reglements);
      
@@ -33,9 +34,11 @@ class ReglementController extends Controller
     }
     public function add(Request $request)
     {
+      
       $total=Reglement::where('reservation_id',$request->input('reservation_id'))->sum('montant');
-      $prix=Reservation::find($request->input('reservation_id'))->select('prix')->value('prix');
-      if($request->input('montant')+$total<$prix){
+      $reservation=Reservation::where('id',$request->input('reservation_id'))->first();
+     $prix=$reservation->prix;
+      if($request->input('montant')+$total<=$prix){
         $reglement=Reglement::create($request->all());
      if($request->input('type')=="espece")
      {

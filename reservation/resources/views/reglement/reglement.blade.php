@@ -143,7 +143,12 @@
 </div>
 <br>
 <hr>
+<button type="button" onclick="printDiv('printMe')" class="btn btn-primary" style="float:right">Imprimer</button>
+
+<di  id="printMe">
 <h2>Historique  des Reglements: </h2>
+
+
 <hr>
 <table class="table">
   <thead>
@@ -206,7 +211,25 @@
 @endforeach
 <tbody>
 </table>
+<hr>
+<div class="row">
+<div class="col-md-9">
+Singature
+</div>
+<div class="col-md-3">
 
+@php 
+$total=DB::table('reglements')->where('reservation_id',$reservation->id)->sum('montant');
+@endphp
+<strong style="color:blue">total:</strong>  {{$total}} TND
+<br>
+
+<strong style="color:red">reset:</strong>   {{$reservation->prix-$total}} TND
+
+</div>
+
+</div>
+</div>
 <!--modaladdbanque-->
 <div class="modal fade" id="addbanque" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -287,6 +310,17 @@ $(document).ready(function() {
 
     });
  });
+ function printDiv(divName){
+			var printContents = document.getElementById(divName).innerHTML;
+			var originalContents = document.body.innerHTML;
+
+			document.body.innerHTML = printContents;
+
+			window.print();
+
+			document.body.innerHTML = originalContents;
+
+		}
 </script>
 
 @endsection

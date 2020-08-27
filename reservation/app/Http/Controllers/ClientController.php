@@ -49,6 +49,9 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'cin' => ['required', 'string','unique:clients'],
+                                      ]);
         $client=new Client;
         $client->nom=$request->input('nom');
         $client->prenom=$request->input('prenom');;

@@ -15,6 +15,7 @@ class CreateAutresTable extends Migration
     {
         Schema::create('autres', function (Blueprint $table) {
             $table->id();
+            $table->string('nom')->nullable();
             $table->integer('espace')->nullable();
             $table->string('type')->nullable();
             $table->integer('nombre_chambre')->nullable();

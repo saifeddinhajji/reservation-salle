@@ -85,10 +85,10 @@
                 <label >Email:</label>
                 <input type="text" name="email" class="form-control" >
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <label >Mote de passe:</label>
                 <input type="text" name="password" class="form-control" >
-            </div>
+            </div>-->
             
             <div  class="form-group">
                 <select class="form-control" name="role">
@@ -104,4 +104,9 @@
     </div>
   </div>
 </div>
+@if($errors->any())
+    {!! implode('', $errors->all('<div>:message</div>')) !!}
+@endif
 @endsection
+
+

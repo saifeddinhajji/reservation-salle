@@ -20,7 +20,12 @@
   </div>
   <div class="form-group">
     <label for="inputAddress">CIN <sup style="color: red;font-size:20 px;">*</sup></label>
-    <input type="number" class="form-control" name="cin" required>
+    <input type="number" name="cin"  class="form-control @error('cin') is-invalid @enderror" required  name="cin" value="{{ old('cin') }}" autocomplete="cin" autofocus>
+    @error('cin')
+                                      <span class="invalid-feedback" role="alert">
+                                          <strong>{{ $message }}</strong>
+                                      </span>
+                                  @enderror  
   </div>
   <div class="form-group">
     <label for="inputAddress">Région / adresse <sup style="color: red;font-size:20 px;">*</sup></label>

@@ -17,6 +17,7 @@ class CreateTableReglement extends Migration
             $table->id();
             $table->float('montant');
             $table->string("type");
+            $table->integer('reservation_id')->unsigned()->index();
             $table->timestamps();
         });
     }

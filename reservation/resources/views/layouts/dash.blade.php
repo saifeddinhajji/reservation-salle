@@ -77,7 +77,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-       @if(Auth::user()->role=="direcrteur")      
+       @if(Auth::user()->role=="directeur")      
         <a class="nav-link" href="{{route('listutlisateur')}}">List Des Comptes <span class="sr-only">(current)</span></a>
       @endif
           

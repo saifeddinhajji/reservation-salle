@@ -24,6 +24,7 @@ class CreateReservationsTable extends Migration
             $table->float('prix')->nullable();
             $table->boolean('engagement')->default(0);
             $table->boolean('permisdefete')->default(0);
+            $table->integer('prix_id')->unsigned()->index();
             $table->timestamps();
         });
     }
