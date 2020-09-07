@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     defaultView: "timeGridWeek",
     eventTextColor: "#fff",
     eventBorderColor: "#000",
-
+    start:'2020-09-22',
     header: {
       left: "prev,next today",
       center: "title ",
@@ -64,8 +64,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+<form method="post" class="card" action="{{route('serachres')}}" style="border: none;background-color: #f7f5f5;padding: 9px;">
+@csrf
+<div class="row" >
+<div class="col-md-5">
+<div class="form-group">
+  <label for="my-input">Date depart</label>
+  <input id="my-input" class="form-control"  name="start_date" type="datetime-local" required>
+</div>
+</div>
+<div class="col-md-5">
+<div class="form-group">
+  <label for="my-input">Date fin</label>
+  <input id="my-input" class="form-control"  name="end_date" type="datetime-local" required>
+</div>
+</div>
+<div class="col-md-2">
 
-
+<button type="sumbit" style="margin-top: 32px;"  class=" form-control btn btn-info btn-sm" >filter</button>
+</div>
+</div>
+</form>
+<br>
+<hr><br>
 <div id='calendar'></div>
 
 @endsection

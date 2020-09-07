@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Salle;
+use App\Prix;
 use Redirect;   
 class SalleController extends Controller
 {
@@ -37,7 +38,10 @@ class SalleController extends Controller
     }
     public function detail($id)
     {
-        return view('salles.detail')->with('salle',Salle::find($id)->with('prix')->first());
+        $salle=Salle::find($id);
+        $prix=Prix::where('salle_id',$salle->id)->get();
+       
+        return view('salles.detail')->with('salle',Salle::find($id))->with('prix',$prix);
     }
     public function delete($id)
     {

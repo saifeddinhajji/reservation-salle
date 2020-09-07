@@ -13,15 +13,17 @@ class UserSeeder1 extends Seeder
     {
   /**********************create patient *************************/
   DB::table('users')->insert([
-    'name' => 'user1',
-    'email' => 'user1@gmail.com',
+    'name' => 'saif eddine',
+    'email' => 'saifeddinhajji@gmail.com',
+    'role' =>"directeur",
     'password' => bcrypt('reservation'),            
 ]);
   /**********************create patient *************************/
   DB::table('users')->insert([
     'name' => 'user2',
     'email' => 'user2@gmail.com',
-    'password' => bcrypt('reservation'),            
+    'password' => bcrypt('reservation'),   
+    'role' =>"directeur",         
 ]);
     }
 }

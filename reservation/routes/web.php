@@ -41,6 +41,7 @@ Route::get('/liste_reservation', 'ReservationController@list')->name('liste_rese
 Route::get('/liste_reservation/ajouter_reservation', 'ReservationController@create')->name('ajouter_reservation')->middleware('auth');
 Route::post('/ajoutreservation','ReservationController@store')->name('saveres')->middleware('auth');
 Route::get('/deletereservation/{id}','ReservationController@destroy')->name('deletereservation')->middleware('auth');
+Route::post('/searchreservation','ReservationController@search')->name('serachres');
 //Route::get('/register',function(){ return back()->withInput();})->middleware('auth');
 
 /***********************salles*****************************/

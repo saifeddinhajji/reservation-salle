@@ -195,7 +195,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach ($salle->prix as  $pr)
+      @foreach ($prix as  $pr)
           
       
       <tr>

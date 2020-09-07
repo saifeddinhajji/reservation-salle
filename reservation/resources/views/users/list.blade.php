@@ -71,11 +71,11 @@
         @csrf
             <div class="form-group">
                 <label >Nom:</label>
-                <input type="text" name="name" class="form-control" >
+                <input type="text" name="name" class="form-control" required>
             </div>
             <div class="form-group">
                 <label >Prénom:</label>
-                <input type="text" name="prenom" class="form-control" >
+                <input type="text" name="prenom" class="form-control" required>
             </div>
             <div class="form-group">
                 <label >Telephone:</label>
@@ -83,7 +83,11 @@
             </div>
             <div class="form-group">
                 <label >Email:</label>
-                <input type="text" name="email" class="form-control" >
+                <input type="text" name="email" class="form-control" required>
+            </div>
+             <div class="form-group">
+                <label >Mot de passe:</label>
+                <input type="password" name="password" class="form-control" required >
             </div>
             <!--<div class="form-group">
                 <label >Mote de passe:</label>

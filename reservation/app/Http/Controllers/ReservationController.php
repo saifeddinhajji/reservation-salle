@@ -21,7 +21,11 @@ class ReservationController extends Controller
        
      return view("reservation") ->with('reservations',json_decode($reservations));      
     }
-
+    public function search(Request $request)
+    {
+        $reservations = Reservation::where('start_date','<=',$request->input('start_date'))->where('end_date','>=',$request->input('end_date'))->with("client")->with('salle')->with('prix')->get();
+        return view("reservation") ->with('reservations',json_decode($reservations)); 
+    }
 
        /**
      * Display a listing of the resource.

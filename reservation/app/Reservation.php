@@ -8,7 +8,7 @@ class Reservation extends Model
 {
     protected $table = 'reservations';
   
-    protected $fillable =['salle','user_id','salle_id','engagement','permisdefete','client_id','end_date','description','prix_id','prix'] ;
+    protected $fillable =['salle','user_id','salle_id','engagement','permisdefete','client_id','start_date','end_date','description','prix_id','prix'] ;
    //public    $timestamps->updated_at = false_id;
 
        public function client(){

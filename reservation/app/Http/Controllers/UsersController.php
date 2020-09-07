@@ -31,18 +31,19 @@ class UsersController extends Controller
             'email' =>'required|string|email|max:255|unique:users',
             'telephone'=>'numeric',
             'role'=>'required',
+            'password'=>'required',
             ]);
-            $password =Str::random(8);
+          //  $password =Str::random(8);
         $user=new User;
         $user->name=$request->input('name');
         $user->prenom=$request->input('prenom');
         $user->email=$request->input('email');
-        $user->password= Hash::make($password);
+        $user->password= Hash::make($request->input('password'));
         $user->telephone=$request->input('telephone');
         $user->role=$request->input('role');
         $user->save();
-         Mail::to($request->input('email'))
-        ->send(new PasswordEmail($request->input('email'),$password));
+        /* Mail::to($request->input('email'))
+        ->send(new PasswordEmail($request->input('email'),$password));*/
         session()->flash('success','la nouvelle compte de utlisateur a été enregistrer correctement!');
         return Redirect::back();
 
